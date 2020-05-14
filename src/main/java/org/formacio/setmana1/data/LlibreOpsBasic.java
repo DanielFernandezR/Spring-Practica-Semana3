@@ -4,9 +4,9 @@ package org.formacio.setmana1.data;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
 import org.formacio.setmana1.domini.Llibre;
 import org.formacio.setmana1.domini.Recomanacio;
+import org.springframework.data.annotation.Persistent;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -34,7 +34,15 @@ public class LlibreOpsBasic {
 	/**
 	 * Sense sorpreses: dona d'alta un nou llibre amb les propietats especificaques
 	 */
+	@Transactional
 	public void alta (String isbn, String autor, Integer pagines, Recomanacio recomanacio, String titol) {
+		Llibre nuevoLibro = new Llibre();
+		nuevoLibro.setIsbn(isbn);
+		nuevoLibro.setAutor(autor);
+		nuevoLibro.setPagines(pagines);
+		nuevoLibro.setRecomanacio(recomanacio);
+		nuevoLibro.setTitol(titol);
+		em.persist(nuevoLibro);
 	}
 	
 	/**
