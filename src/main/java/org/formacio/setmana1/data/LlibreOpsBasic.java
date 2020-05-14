@@ -50,8 +50,15 @@ public class LlibreOpsBasic {
 	 * @param isbn del llibre a eliminar
 	 * @return true si s'ha esborrat el llibre, false si no existia
 	 */
+	@Transactional
 	public boolean elimina (String isbn) {
-		return true;
+		Llibre libroBorrado = em.find(Llibre.class, isbn);
+		if ( libroBorrado != null) {
+			em.remove(libroBorrado);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
