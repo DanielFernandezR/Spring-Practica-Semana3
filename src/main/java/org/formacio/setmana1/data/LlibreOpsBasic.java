@@ -87,7 +87,12 @@ public class LlibreOpsBasic {
 	 * Si el llibre indicat no existeix, retorna null
 	 */
 	public Recomanacio recomenacioPer (String isbn) {
-		return null;
+		Llibre libro = em.find(Llibre.class, isbn);
+		if ( libro != null) {
+			return libro.getRecomanacio();
+		} else {
+			return null;
+		}
 	}
 	
 }
